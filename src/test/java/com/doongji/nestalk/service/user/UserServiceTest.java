@@ -82,4 +82,12 @@ class UserServiceTest {
         log.info("Found by {} {}: {}", name, phone, email);
     }
 
+    @Test
+    void 회원_탈퇴() throws Exception {
+        boolean deleteUser = userService.deleteById(1L);
+        assertThat(deleteUser).isTrue();
+        log.info("Delete User : {}",deleteUser);
+        assertThat(userService.findByEmail(this.email).isPresent()).isFalse();
+    }
+
 }
