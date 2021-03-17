@@ -59,4 +59,15 @@ public class UserService {
                 .map(User::getEmail)
                 .orElseThrow(() -> new NotFoundException(User.class, name, phone));
     }
+
+    @Transactional
+    public boolean deleteById(Long userId) {
+        Optional<User> findUser = userRepository.findById(userId);
+        if (findUser.isPresent()) {
+            User user = findUser.get();
+            userRepository.deleteById(user.getUserId());
+            return true;
+        }
+        return false;
+    }
 }
