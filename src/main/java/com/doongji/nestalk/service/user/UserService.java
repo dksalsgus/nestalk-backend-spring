@@ -62,10 +62,9 @@ public class UserService {
 
     @Transactional
     public boolean deleteById(Long userId) {
-        Optional<User> findUser = userRepository.findById(userId);
-        if (findUser.isPresent()) {
-            User user = findUser.get();
-            userRepository.deleteById(user.getUserId());
+        User findUser = userRepository.findById(userId).orElseThrow(()-> new NotFoundException("Not Found User"));
+        if (findUser != null){
+            userRepository.deleteById(findUser.getUserId());
             return true;
         }
         return false;

@@ -4,6 +4,7 @@ import com.doongji.nestalk.controller.v1.user.dto.*;
 import com.doongji.nestalk.entity.user.Role;
 import com.doongji.nestalk.entity.user.User;
 import com.doongji.nestalk.security.Jwt;
+import com.doongji.nestalk.security.JwtAuthentication;
 import com.doongji.nestalk.service.user.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,6 +12,7 @@ import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.mariadb.jdbc.internal.failover.thread.TerminableRunnable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.table.TableRowSorter;
@@ -60,8 +62,9 @@ public class UserRestController {
     }
 
     @ApiOperation(value = "회원탈퇴")
-    @DeleteMapping(path = "user/{userId}}")
-    public ResponseEntity<Boolean> deleteUser(@PathVariable Long userId) {
+    @DeleteMapping(path = "user/delete")
+    public ResponseEntity<Boolean> deleteUser(@AuthenticationPrincipal JwtAuthentication jwtAuthentication) {
+        Long userId = jwtAuthentication.userId;
         return ResponseEntity.ok(userService.deleteById(userId));
     }
 }
