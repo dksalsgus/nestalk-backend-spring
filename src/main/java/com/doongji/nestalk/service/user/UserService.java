@@ -62,11 +62,7 @@ public class UserService {
 
     @Transactional
     public boolean deleteById(Long userId) {
-        User findUser = userRepository.findById(userId).orElseThrow(()-> new NotFoundException("Not Found User"));
-        if (findUser != null){
-            userRepository.deleteById(findUser.getUserId());
-            return true;
-        }
-        return false;
+        userRepository.deleteByUserId(userId).orElseThrow(() -> new NotFoundException("Not Found User"));
+        return true;
     }
 }
