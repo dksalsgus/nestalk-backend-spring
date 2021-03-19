@@ -59,4 +59,11 @@ public class UserService {
                 .map(User::getEmail)
                 .orElseThrow(() -> new NotFoundException(User.class, name, phone));
     }
+
+    @Transactional
+    public User userDetails(Long userId) {
+        User findUser = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("Not Found User"));
+        return findUser;
+    }
+
 }
