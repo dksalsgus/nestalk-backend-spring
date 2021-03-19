@@ -1,5 +1,6 @@
 package com.doongji.nestalk.service.user;
 
+import com.doongji.nestalk.controller.v1.user.dto.UserDto;
 import com.doongji.nestalk.entity.user.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
@@ -80,6 +81,20 @@ class UserServiceTest {
         String email = userService.findEmailByNameAndPhone("둥지", "010-0000-0000");
         assertThat(email).isEqualTo(this.email);
         log.info("Found by {} {}: {}", name, phone, email);
+    }
+
+    @Test
+    void 유저_정보수정() {
+        User user = userService.findByEmail(email).orElse(null);
+        UserDto userDto = new UserDto(user);
+        userDto.setEmail("update@update.com");
+        userDto.setName("updateUser");
+        userDto.setPassword("updatePassword");
+        userDto.setPhone("010-1234-1234");
+        userDto.setBirthday(LocalDate.now());
+        User updateUser = userService.userUpdate(userDto);
+        assertThat(updateUser.getUserId()).isEqualTo(user.getUserId());
+        log.info("update User: {}", updateUser);
     }
 
 }
