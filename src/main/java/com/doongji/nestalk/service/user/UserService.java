@@ -1,5 +1,6 @@
 package com.doongji.nestalk.service.user;
 
+import com.doongji.nestalk.controller.v1.user.dto.UserDto;
 import com.doongji.nestalk.entity.user.User;
 import com.doongji.nestalk.error.NotFoundException;
 import com.doongji.nestalk.repository.user.UserRepository;
@@ -58,5 +59,10 @@ public class UserService {
         return userRepository.findByNameAndPhone(name, phone)
                 .map(User::getEmail)
                 .orElseThrow(() -> new NotFoundException(User.class, name, phone));
+    }
+
+    @Transactional
+    public User userUpdate(UserDto userDto) {
+        return userRepository.save(userDto.toEntity());
     }
 }
