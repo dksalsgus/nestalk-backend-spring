@@ -10,10 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -61,8 +58,8 @@ public class UserRestController {
     }
 
     @ApiOperation(value = "회원 정보 수정")
-    @PostMapping(path = "user/update")
-    public ResponseEntity<User> checkEmail(@RequestBody UserDto userDto) {
+    @PutMapping(path = "user/update")
+    public ResponseEntity<User> updateUser(@RequestBody UserDto userDto) {
         return ResponseEntity.ok(userService.userUpdate(userDto));
     }
 }
