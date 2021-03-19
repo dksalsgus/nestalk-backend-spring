@@ -84,8 +84,8 @@ class UserServiceTest {
 
     @Test
     void 회원_탈퇴() throws Exception {
-        boolean deleteUser = userService.deleteById(1L);
-        assertThat(deleteUser).isTrue();
+        Integer deleteUser = userService.deleteById(1L);
+        assertThat(deleteUser).isEqualTo(0);
         log.info("Delete User : {}",deleteUser);
         assertThat(userService.findByEmail(this.email).isPresent()).isFalse();
     }
