@@ -1,5 +1,6 @@
 package com.doongji.nestalk.service.user;
 
+import com.doongji.nestalk.controller.v1.user.dto.UserDto;
 import com.doongji.nestalk.entity.user.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
@@ -9,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.LOCAL_DATE;
 
 @Slf4j
 @SpringBootTest
@@ -83,6 +85,10 @@ class UserServiceTest {
     }
 
     @Test
+    void 회원_정보조회() {
+        User user = userService.userDetails(1L);
+        log.info("User: {}", user);
+}
     void 회원_탈퇴() throws Exception {
         Integer deleteUser = userService.deleteById(1L);
         assertThat(deleteUser).isEqualTo(1); // delete 영향받은 행 = 1 없으면 0

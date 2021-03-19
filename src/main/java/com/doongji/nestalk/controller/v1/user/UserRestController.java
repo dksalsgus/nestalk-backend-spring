@@ -13,6 +13,10 @@ import lombok.RequiredArgsConstructor;
 import org.mariadb.jdbc.internal.failover.thread.TerminableRunnable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.table.TableRowSorter;
@@ -61,6 +65,13 @@ public class UserRestController {
         return ResponseEntity.ok(new FindEmailResponse(email));
     }
 
+    @ApiOperation(value = "회원 정보 조회")
+    @PostMapping(path = "user/details")
+    public ResponseEntity<User> userDetails(@AuthenticationPrincipal JwtAuthentication jwtAuthentication) {
+        Long userId = jwtAuthentication.userId;
+        User user = userService.userDetails(userId);
+        return ResponseEntity.ok(user);
+    }
     @ApiOperation(value = "회원탈퇴")
     @DeleteMapping(path = "user/delete")
     public ResponseEntity<Integer> deleteUser(@AuthenticationPrincipal JwtAuthentication jwtAuthentication) {
