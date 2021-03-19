@@ -1,5 +1,6 @@
 package com.doongji.nestalk.service.user;
 
+import com.doongji.nestalk.controller.v1.user.dto.UserDto;
 import com.doongji.nestalk.entity.user.User;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
@@ -9,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.LOCAL_DATE;
 
 @Slf4j
 @SpringBootTest
@@ -80,6 +82,12 @@ class UserServiceTest {
         String email = userService.findEmailByNameAndPhone("둥지", "010-0000-0000");
         assertThat(email).isEqualTo(this.email);
         log.info("Found by {} {}: {}", name, phone, email);
+    }
+
+    @Test
+    void 회원_정보조회() {
+        User user = userService.userDetails(1L);
+        log.info("User: {}", user);
     }
 
 }
