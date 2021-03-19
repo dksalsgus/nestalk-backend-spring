@@ -59,4 +59,10 @@ public class UserRestController {
         String email = userService.findEmailByNameAndPhone(request.getName(), request.getPhone());
         return ResponseEntity.ok(new FindEmailResponse(email));
     }
+
+    @ApiOperation(value = "회원 정보 수정")
+    @PostMapping(path = "user/update")
+    public ResponseEntity<User> checkEmail(@RequestBody UserDto userDto) {
+        return ResponseEntity.ok(userService.userUpdate(userDto));
+    }
 }
