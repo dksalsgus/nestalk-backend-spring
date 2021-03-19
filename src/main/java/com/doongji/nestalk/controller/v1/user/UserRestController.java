@@ -66,7 +66,7 @@ public class UserRestController {
     }
 
     @ApiOperation(value = "회원 정보 조회")
-    @PostMapping(path = "user/details")
+    @GetMapping(path = "user/details")
     public ResponseEntity<User> userDetails(@AuthenticationPrincipal JwtAuthentication jwtAuthentication) {
         Long userId = jwtAuthentication.userId;
         User user = userService.userDetails(userId);
