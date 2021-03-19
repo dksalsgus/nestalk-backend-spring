@@ -43,6 +43,7 @@ public class User extends BaseTimeEntity {
         this(null, email, name, password, phone, birthday);
     }
 
+    @Builder
     public User(Long userId, String email, String name, String password, String phone, LocalDate birthday) {
         checkArgument(isNotEmpty(email), "email must be provided.");
         checkArgument(
