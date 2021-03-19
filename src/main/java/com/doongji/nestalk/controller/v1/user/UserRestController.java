@@ -72,6 +72,7 @@ public class UserRestController {
         User user = userService.userDetails(userId);
         return ResponseEntity.ok(user);
     }
+
     @ApiOperation(value = "회원탈퇴")
     @DeleteMapping(path = "user/delete")
     public ResponseEntity<Integer> deleteUser(@AuthenticationPrincipal JwtAuthentication jwtAuthentication) {

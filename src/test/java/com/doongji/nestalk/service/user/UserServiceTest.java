@@ -88,11 +88,13 @@ class UserServiceTest {
     void 회원_정보조회() {
         User user = userService.userDetails(1L);
         log.info("User: {}", user);
-}
+    }
+
+    @Test
     void 회원_탈퇴() throws Exception {
         Integer deleteUser = userService.deleteById(1L);
         assertThat(deleteUser).isEqualTo(1); // delete 영향받은 행 = 1 없으면 0
-        log.info("Delete User : {}",deleteUser);
+        log.info("Delete User : {}", deleteUser);
         assertThat(userService.findByEmail(this.email).isPresent()).isFalse();
     }
 
