@@ -86,7 +86,7 @@ class UserServiceTest {
 
     @Test
     void 회원_정보조회() {
-        User user = userService.userDetails(1L);
+        UserDto user = userService.userDetails(1L);
         log.info("User: {}", user);
 }
     void 회원_탈퇴() throws Exception {
