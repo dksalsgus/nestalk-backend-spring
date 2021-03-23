@@ -63,6 +63,8 @@ public class UserService {
 
     @Transactional
     public User userUpdate(UserDto userDto) {
-        return userRepository.save(userDto.toEntity());
+        User findUser = userRepository.findById(userDto.getUserId()).orElseThrow(()->new NotFoundException(""));
+        findUser.Update(userDto.getEmail(),userDto.getName(),userDto.getPhone(),userDto.getBirthday());
+        return findUser;
     }
 }

@@ -18,9 +18,6 @@ public class UserDto {
     @ApiModelProperty(value = "PK", required = true)
     private Long userId;
 
-    @ApiModelProperty(value = "패스워드", required = true)
-    private String password;
-
     @ApiModelProperty(value = "이메일", required = true)
     private String email;
 
@@ -36,16 +33,5 @@ public class UserDto {
     public UserDto(User source) {
         copyProperties(source, this);
     }
-
-    public User toEntity() {
-        return User.builder()
-                .userId(userId)
-                .password(password)
-                .email(email)
-                .name(name)
-                .phone(phone)
-                .birthday(birthday)
-                .build();
-    };
 
 }

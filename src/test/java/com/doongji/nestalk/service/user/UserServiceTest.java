@@ -89,7 +89,6 @@ class UserServiceTest {
         UserDto userDto = new UserDto(user);
         userDto.setEmail("update@update.com");
         userDto.setName("updateUser");
-        userDto.setPassword("updatePassword");
         userDto.setPhone("010-1234-1234");
         userDto.setBirthday(LocalDate.now());
         User updateUser = userService.userUpdate(userDto);
