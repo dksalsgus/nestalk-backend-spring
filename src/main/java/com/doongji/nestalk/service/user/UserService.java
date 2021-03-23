@@ -62,6 +62,6 @@ public class UserService {
 
     @Transactional
     public void deleteById(Long userId) {
-        userRepository.deleteByUserId(userId).orElseThrow(() -> new NotFoundException("Not Found User"));
+        userRepository.deleteByUserId(userId);
     }
 }

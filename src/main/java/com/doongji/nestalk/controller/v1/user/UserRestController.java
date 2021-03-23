@@ -60,8 +60,8 @@ public class UserRestController {
     }
 
     @ApiOperation(value = "회원탈퇴")
-    @DeleteMapping(path = "user/delete")
-    public ResponseEntity<?> deleteUser(@AuthenticationPrincipal JwtAuthentication jwtAuthentication) {
+    @DeleteMapping(path = "user")
+    public ResponseEntity<Void> deleteUser(@AuthenticationPrincipal JwtAuthentication jwtAuthentication) {
         Long userId = jwtAuthentication.userId;
         userService.deleteById(userId);
         return ResponseEntity.noContent().build();

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -84,7 +85,9 @@ class UserServiceTest {
 
     @Test
     void 회원_탈퇴() throws Exception {
-        userService.deleteById(1L);
+        Optional<User> findUser = userService.findByEmail(this.email);
+        log.info("Found User : {}", findUser.get());
+        userService.deleteById(findUser.get().getUserId());
         assertThat(userService.findByEmail(this.email).isPresent()).isFalse();
     }
 
