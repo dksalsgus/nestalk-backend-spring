@@ -59,8 +59,8 @@ public class UserRestController {
 
     @ApiOperation(value = "회원 정보 수정")
     @PutMapping(path = "user/update")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto) {
-        User updateUser =userService.userUpdate(userDto);
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserUpdateRequest updateRequest) {
+        User updateUser = userService.userUpdate(updateRequest);
         return ResponseEntity.ok(new UserDto(updateUser));
     }
 }
