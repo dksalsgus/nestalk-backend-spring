@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.LOCAL_DATE;
 
 @Slf4j
 @SpringBootTest
@@ -87,6 +86,7 @@ class UserServiceTest {
     @Test
     void 회원_정보조회() {
         UserDto user = userService.userDetails(1L);
+        assertThat(user).isNotNull();
         log.info("User: {}", user);
 }
     void 회원_탈퇴() throws Exception {

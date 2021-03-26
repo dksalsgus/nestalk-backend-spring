@@ -63,7 +63,8 @@ public class UserService {
 
     @Transactional
     public UserDto userDetails(Long userId) {
-        return userRepository.findByUserId(userId).orElseThrow(() -> new NotFoundException("Not Found User"));
+        User findUser = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("Not Found User"));
+        return new UserDto(findUser);
     }
 
     public Integer deleteById(Long userId) {
