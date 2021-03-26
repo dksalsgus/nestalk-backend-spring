@@ -63,8 +63,8 @@ public class UserService {
     }
 
     @Transactional
-    public User userUpdate(UserUpdateRequest updateRequest) {
-        User findUser = userRepository.findById(updateRequest.getUserId()).orElseThrow(()->new NotFoundException("Not Found User"));
+    public User userUpdate(Long userId,UserUpdateRequest updateRequest) {
+        User findUser = userRepository.findById(userId).orElseThrow(()->new NotFoundException("Not Found User"));
         findUser.Update(updateRequest.getName(),updateRequest.getPhone(),updateRequest.getBirthday());
         return findUser;
     }
