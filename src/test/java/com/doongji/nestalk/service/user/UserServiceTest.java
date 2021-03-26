@@ -86,6 +86,7 @@ class UserServiceTest {
     @Test
     void 유저_정보수정() {
         User user = userService.findByEmail(email).orElse(null);
+        log.info("find User: {}", user);
         UserUpdateRequest updateRequest = new UserUpdateRequest();
         updateRequest.setName("updateUser");
         updateRequest.setPhone("010-1234-1234");
