@@ -87,11 +87,8 @@ class UserServiceTest {
     void 유저_정보수정() {
         User user = userService.findByEmail(email).orElse(null);
         log.info("find User: {}", user);
-        UserUpdateRequest updateRequest = new UserUpdateRequest();
-        updateRequest.setName("updateUser");
-        updateRequest.setPhone("010-1234-1234");
-        updateRequest.setBirthday(LocalDate.now());
-        User updateUser = userService.userUpdate(user.getUserId(),updateRequest);
+        UserUpdateRequest updateRequest = new UserUpdateRequest("updateUser", "010-1234-1234", LocalDate.now());
+        User updateUser = userService.userUpdate(user.getUserId(), updateRequest);
         assertThat(updateUser.getEmail()).isEqualTo(user.getEmail());
         assertThat(updateUser.getName()).isNotEqualTo(user.getName());
         log.info("update User: {}", updateUser);
