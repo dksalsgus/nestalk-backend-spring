@@ -85,12 +85,14 @@ class UserServiceTest {
 
     @Test
     void 유저_정보수정() {
-        User user = userService.findByEmail(email).orElse(null);
+        User user = userService.findByEmail(this.email).orElse(null);
         log.info("find User: {}", user);
-        UserUpdateRequest updateRequest = new UserUpdateRequest("updateUser", "010-1234-1234", LocalDate.now());
+
+        UserUpdateRequest updateRequest = new UserUpdateRequest("updateUser", "010-1234-1234", LocalDate.of(2021, 03, 01));
         User updateUser = userService.userUpdate(user.getUserId(), updateRequest);
-        assertThat(updateUser.getEmail()).isEqualTo(user.getEmail());
-        assertThat(updateUser.getName()).isNotEqualTo(user.getName());
+        assertThat(updateUser.getName()).isEqualTo("updateUser");
+        assertThat(updateUser.getPhone()).isEqualTo("010-1234-1234");
+        assertThat(updateUser.getBirthday()).isEqualTo("2021-03-01");
         log.info("update User: {}", updateUser);
     }
 
