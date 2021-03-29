@@ -1,13 +1,13 @@
 package com.doongji.nestalk.controller.v1.user.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
 @Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class UserUpdateRequest {
