@@ -60,7 +60,7 @@ public class UserRestController {
     }
 
     @ApiOperation(value = "회원 정보 수정")
-    @PutMapping(path = "user")
+    @PatchMapping(path = "user")
     public ResponseEntity<UserDto> updateUser(@AuthenticationPrincipal JwtAuthentication jwtAuthentication, @RequestBody UserUpdateRequest updateRequest) {
         User updateUser = userService.userUpdate(jwtAuthentication.userId,updateRequest);
         return ResponseEntity.ok(new UserDto(updateUser));
