@@ -60,7 +60,7 @@ public class UserRestController {
     }
 
     @ApiOperation(value = "회원 정보 조회")
-    @GetMapping(path = "user/details")
+    @GetMapping(path = "user")
     public ResponseEntity<UserDto> userDetails(@AuthenticationPrincipal JwtAuthentication jwtAuthentication) {
         User findUser = userService.userDetails(jwtAuthentication.userId);
         return ResponseEntity.ok(new UserDto(findUser));
