@@ -1,6 +1,5 @@
 package com.doongji.nestalk.service.user;
 
-import com.doongji.nestalk.controller.v1.user.dto.UserDto;
 import com.doongji.nestalk.entity.user.User;
 import com.doongji.nestalk.error.NotFoundException;
 import com.doongji.nestalk.repository.user.UserRepository;
@@ -62,12 +61,8 @@ public class UserService {
     }
 
     @Transactional
-    public UserDto userDetails(Long userId) {
-        return userRepository.findByUserId(userId).orElseThrow(() -> new NotFoundException("Not Found User"));
+    public User userDetails(Long userId) {
+        return userRepository.findById(userId).orElseThrow(() -> new NotFoundException("Not Found User"));
     }
 
-    public Integer deleteById(Long userId) {
-        Integer deleteUser = userRepository.deleteByUserId(userId).orElseThrow(() -> new NotFoundException("Not Found User"));
-        return deleteUser;
-    }
 }

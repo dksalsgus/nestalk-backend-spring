@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.LOCAL_DATE;
 
 @Slf4j
 @SpringBootTest
@@ -86,14 +85,9 @@ class UserServiceTest {
 
     @Test
     void 회원_정보조회() {
-        UserDto user = userService.userDetails(1L);
+        User user = userService.userDetails(1L);
+        assertThat(user).isNotNull();
         log.info("User: {}", user);
-}
-    void 회원_탈퇴() throws Exception {
-        Integer deleteUser = userService.deleteById(1L);
-        assertThat(deleteUser).isEqualTo(1); // delete 영향받은 행 = 1 없으면 0
-        log.info("Delete User : {}",deleteUser);
-        assertThat(userService.findByEmail(this.email).isPresent()).isFalse();
     }
 
 }

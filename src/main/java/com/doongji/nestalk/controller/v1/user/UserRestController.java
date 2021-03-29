@@ -12,10 +12,6 @@ import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -66,14 +62,7 @@ public class UserRestController {
     @ApiOperation(value = "회원 정보 조회")
     @GetMapping(path = "user/details")
     public ResponseEntity<UserDto> userDetails(@AuthenticationPrincipal JwtAuthentication jwtAuthentication) {
-        Long userId = jwtAuthentication.userId;
-        UserDto user = userService.userDetails(userId);
-        return ResponseEntity.ok(user);
-    }
-    @ApiOperation(value = "회원탈퇴")
-    @DeleteMapping(path = "user/delete")
-    public ResponseEntity<Integer> deleteUser(@AuthenticationPrincipal JwtAuthentication jwtAuthentication) {
-        Long userId = jwtAuthentication.userId;
-        return ResponseEntity.ok(userService.deleteById(userId));
+        User findUser = userService.userDetails(jwtAuthentication.userId);
+        return ResponseEntity.ok(new UserDto(findUser));
     }
 }
