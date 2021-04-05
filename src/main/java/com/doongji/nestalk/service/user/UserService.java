@@ -66,5 +66,6 @@ public class UserService {
         User findUser = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("Not Found User userId = {}", userId));
         findUser.updateUser(updateRequest.getName(), updateRequest.getPhone(), updateRequest.getBirthday());
         return findUser;
+
     }
 }
