@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -84,7 +85,7 @@ class UserServiceTest {
     }
 
     @Test
-    void 유저_정보수정() {
+  void 유저_정보수정() {
         User user = userService.findByEmail(this.email).orElse(null);
         log.info("find User: {}", user);
 
@@ -94,6 +95,7 @@ class UserServiceTest {
         assertThat(updateUser.getPhone()).isEqualTo("010-1234-1234");
         assertThat(updateUser.getBirthday()).isEqualTo("2021-03-01");
         log.info("update User: {}", updateUser);
+
     }
 
 }
