@@ -63,9 +63,11 @@ public class UserService {
 
     @Transactional
     public User userUpdate(Long userId, UserUpdateRequest updateRequest) {
-        User findUser = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("Not Found User userId = {}", userId));
-        findUser.updateUser(updateRequest.getName(), updateRequest.getPhone(), updateRequest.getBirthday());
-        return findUser;
-
+        return userRepository.findById(userId)
+                .map(user -> {
+                    user.updateUser(updateRequest.getName(), updateRequest.getPhone(), updateRequest.getBirthday());
+                    return user;
+                })
+                .orElseThrow(() -> new NotFoundException("Not Found User userId = {}", userId));
     }
 }
